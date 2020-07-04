@@ -33,7 +33,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: #999;
+  background: #27064b;
 }
 
 #app {
@@ -49,7 +49,7 @@ main {
 }
 
 header {
-  background-color: #999;
+  background-color: #fff;
   width: 1084px;
   margin: 0 auto;
 }
