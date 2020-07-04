@@ -36,10 +36,6 @@ body {
   background: #27064b;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
-
 main {
   margin: 8px auto;
   padding: 30px;
@@ -52,6 +48,19 @@ header {
   background-color: #fff;
   width: 1084px;
   margin: 0 auto;
+}
+</style>
+
+<style scoped>
+/* deep selector
+
+.content >>> .robot-name{
+  color: red;
+  border: 1px solid blue;
+} */
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 ul {
