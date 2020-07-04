@@ -58,6 +58,7 @@
 
 <script>
 import availableParts from '../data/parts';
+import createdHookMixin from '../data/created-hook-mixin';
 
 function getPrevValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -82,6 +83,7 @@ export default {
       selectedBaseIndex: 0,
     };
   },
+  mixins: [createdHookMixin],
   computed: {
     selectedRobot() {
       return {
@@ -254,7 +256,7 @@ export default {
   }
 }
 .right {
-  border-right: none;
+  // border-right: none;
   img {
     transform: rotate(90deg);
   }
