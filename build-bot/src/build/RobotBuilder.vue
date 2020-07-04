@@ -184,16 +184,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .part {
   position: relative;
   width: 165px;
   height: 165px;
   border: 3px solid #aaa;
+  img {
+    width: 165px;
+  }
 }
-.part img {
-  width: 165px;
-}
+
 .top-row {
   display: flex;
   justify-content: space-around;
@@ -209,18 +210,6 @@ export default {
 }
 .head {
   border-bottom: none;
-}
-.left {
-  border-right: none;
-}
-.right {
-  border-left: none;
-}
-.left img {
-  transform: rotate(-90deg);
-}
-.right img {
-  transform: rotate(90deg);
 }
 .bottom {
   border-top: none;
@@ -245,34 +234,44 @@ export default {
 .center .next-selector {
   opacity: 0.8;
 }
-.left .prev-selector {
-  top: -28px;
-  left: -3px;
-  width: 144px;
-  height: 25px;
+.left {
+  border-right: none;
+  img {
+    transform: rotate(-90deg);
+  }
+  .prev-selector {
+    top: -28px;
+    left: -3px;
+    width: 144px;
+    height: 25px;
+  }
+  .next-selector {
+    top: auto;
+    bottom: -28px;
+    left: -3px;
+    width: 144px;
+    height: 25px;
+  }
 }
-.left .next-selector {
-  top: auto;
-  bottom: -28px;
-  left: -3px;
-  width: 144px;
-  height: 25px;
-}
-.right .prev-selector {
-  top: -28px;
-  left: 24px;
-  width: 144px;
-  height: 25px;
-}
-.right .next-selector {
-  top: auto;
-  bottom: -28px;
-  left: 24px;
-  width: 144px;
-  height: 25px;
-}
-.right .next-selector {
-  right: -3px;
+.right {
+  border-right: none;
+  img {
+    transform: rotate(90deg);
+  }
+  .prev-selector {
+    top: -28px;
+    left: 24px;
+    width: 144px;
+    height: 25px;
+  }
+  .next-selector {
+    top: auto;
+    bottom: -28px;
+    left: 24px;
+    width: 144px;
+    height: 25px;
+    right: -3px;
+  }
 }
 .robot-name {
   position: absolute;
@@ -303,6 +302,6 @@ th {
   text-align: right;
 }
 .sale-border {
-    border: 3px solid red;
+  border: 3px solid red;
 }
 </style>
