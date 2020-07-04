@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="content">
+    <button class="add-to-cart" @click="addToCart()">Add to cart</button>
     <div class="top-row">
       <div class="top part">
         <div class="robot-name">
-            {{selectedRobot.head.title}}
-            <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
+          {{selectedRobot.head.title}}
+          <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
         </div>
         <img :src="selectedRobot.head.src" title="head" />
         <button @click="selectPreviousHead()" class="prev-selector">&#9668;</button>
@@ -35,6 +36,23 @@
         <button @click="selectNextBase()" class="next-selector">&#9658;</button>
       </div>
     </div>
+    <div>
+        <h1>Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Robot</th>
+                    <th class="cost">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(robot, index) in cart" :key="index">
+                    <td>{{robot.head.title}}</td>
+                    <td class="cost">{{robot.cost}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
   </div>
 </template>
 
@@ -56,6 +74,7 @@ export default {
   data() {
     return {
       availableParts,
+      cart: [],
       selectedHeadIndex: 0,
       selectedLeftArmIndex: 0,
       selectedRightArmIndex: 0,
@@ -75,6 +94,16 @@ export default {
     },
   },
   methods: {
+    addToCart() {
+      const robot = this.selectedRobot;
+      const cost = robot.head.cost
+        + robot.leftArm.cost
+        + robot.rightArm.cost
+        + robot.torso.cost
+        + robot.base.cost;
+      this.cart.push({ ...robot, cost });
+    },
+
     selectNextHead() {
       /* const test = availableParts.heads.length - 1;
       if (this.selectedHeadIndex < test) {
@@ -242,7 +271,24 @@ export default {
   width: 100%;
 }
 .sale {
-    color: red;
-    font-weight: 700;
+  color: red;
+  font-weight: 700;
+}
+.content {
+  position: relative;
+}
+.add-to-cart {
+  position: absolute;
+  right: 30px;
+  width: 220px;
+  padding: 4px;
+  font-size: 1rem;
+}
+td, th {
+    text-align: left;
+    padding: 5px 20px 5px 5px;
+}
+.cost {
+    text-align: right;
 }
 </style>
