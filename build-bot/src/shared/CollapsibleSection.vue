@@ -25,8 +25,9 @@ export default {
 
 <style scoped>
     .header {
-        background: #bbb;
+        background: #e3e3e3;
         padding: 3px;
         cursor: pointer;
+        border-radius: 4px;
     }
 </style>

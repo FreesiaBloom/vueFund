@@ -5,27 +5,41 @@
         <ul>
           <li class="nav-item">
             <img class="logo" src="./assets/build-a-bot-logo.png" />
-            Build a bot
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Home'}" exact>
+              Home
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Build'}" exact>
+              Build
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'BrowseParts'}" exact>
+              Browse parts
+            </router-link>
           </li>
         </ul>
       </nav>
     </header>
-    <main>
-      <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
-      <RobotBuilder />
-    </main>
+    <div class="container">
+      <aside class="aside">
+        <router-view name="sidebar"></router-view>
+      </aside>
+      <main>
+        <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
+        <router-view/>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
 // import HomePage from './home/HomePage.vue';
-import RobotBuilder from './build/RobotBuilder.vue';
-
 export default {
   name: 'App',
-  components: {
-    RobotBuilder,
-  },
 };
 </script>
 
@@ -33,25 +47,25 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: #27064b;
+  background: #e3e3e3;
 }
 
 main {
-  margin: 8px auto;
   padding: 30px;
   background: #fff;
-  width: 1024px;
+  width: 964px;
   min-height: 300px;
+  border-radius: 4px;
 }
 
 header {
-  background-color: #fff;
-  width: 1084px;
+  width: 1184px;
   margin: 0 auto;
+  color: #fff;
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 /* deep selector
 
 .content >>> .robot-name{
@@ -66,17 +80,44 @@ header {
 ul {
   padding: 3px;
   display: flex;
-}
 
-.nav-item {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 22px;
-  border-right: 1px solid #bbb;
+  .nav-item {
+    display: flex;
+    align-items: center;
+    margin: 8px 0 8px 24px;
+    font-size: 20px;
+    .nav-link {
+      text-decoration: none;
+      color: inherit;
+      background: #e0893b;
+      padding: 8px 16px;
+      border-radius: 4px;
+      &:hover {
+        background-color: #e26a00;
+      }
+    }
+    .router-link-active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .logo {
   vertical-align: middle;
-  height: 30px;
+  height: 50px;
+}
+
+.container {
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+}
+
+.aside {
+  padding: 16px;
+  background: #e26a00;
+  border-radius: 4px;
+  width: 100px;
+  min-height: 300px;
 }
 </style>
