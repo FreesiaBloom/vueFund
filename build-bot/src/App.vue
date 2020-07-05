@@ -4,8 +4,10 @@
       <nav>
         <ul>
           <li class="nav-item">
-            <img class="logo" src="./assets/build-a-bot-logo.png" />
-            Build a bot
+            <router-link class="nav-link" :to="{name: 'Home'}">
+              <img class="logo" src="./assets/build-a-bot-logo.png" />
+              Build a bot
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -46,7 +48,7 @@ header {
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 /* deep selector
 
 .content >>> .robot-name{
@@ -61,13 +63,17 @@ header {
 ul {
   padding: 3px;
   display: flex;
-}
 
-.nav-item {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 22px;
-  border-right: 1px solid #bbb;
+  .nav-item {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 22px;
+    border-right: 1px solid #bbb;
+    .nav-link {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 }
 
 .logo {
