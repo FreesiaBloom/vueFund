@@ -67,6 +67,11 @@ export default new Router({
       name: 'Parts',
       component: PartInfo,
       props: true,
+      // validation to prevent navigation with wrong url link
+      beforeEnter(to, from, next) {
+        const isValidId = Number.isInteger(Number(to.params.id));
+        next(isValidId);
+      },
     },
   ],
 });
