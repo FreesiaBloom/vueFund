@@ -12,20 +12,15 @@
     </header>
     <main>
       <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
-      <RobotBuilder />
+      <router-view/>
     </main>
   </div>
 </template>
 
 <script>
 // import HomePage from './home/HomePage.vue';
-import RobotBuilder from './build/RobotBuilder.vue';
-
 export default {
   name: 'App',
-  components: {
-    RobotBuilder,
-  },
 };
 </script>
 
