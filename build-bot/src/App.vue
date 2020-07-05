@@ -83,6 +83,9 @@ ul {
       background: #e0893b;
       padding: 8px 16px;
       border-radius: 4px;
+      &:hover {
+        background-color: #e26a00;
+      }
     }
     .router-link-active {
       text-decoration: underline;

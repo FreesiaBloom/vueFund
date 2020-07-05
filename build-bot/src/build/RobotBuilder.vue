@@ -230,6 +230,10 @@ export default {
   border-radius: 4px;
   color: #fff;
   font-size: 20px;
+  cursor: pointer;
+  &:hover {
+        background-color: #e26a00;
+      }
 }
 td,
 th {
