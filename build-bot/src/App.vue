@@ -8,7 +8,7 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'Home'}" exact>
-              Build-a-bot
+              Home
             </router-link>
           </li>
           <li class="nav-item">
@@ -16,13 +16,23 @@
               Build
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'BrowseParts'}" exact>
+              Browse parts
+            </router-link>
+          </li>
         </ul>
       </nav>
     </header>
-    <main>
-      <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
-      <router-view/>
-    </main>
+    <div class="container">
+      <aside class="aside">
+        <router-view name="sidebar"></router-view>
+      </aside>
+      <main>
+        <!-- <HomePage msg="Welcome to Your Vue.js App" /> -->
+        <router-view/>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -41,16 +51,15 @@ body {
 }
 
 main {
-  margin: 8px auto;
   padding: 30px;
   background: #fff;
-  width: 1024px;
+  width: 964px;
   min-height: 300px;
   border-radius: 4px;
 }
 
 header {
-  width: 1084px;
+  width: 1184px;
   margin: 0 auto;
   color: #fff;
 }
@@ -96,5 +105,19 @@ ul {
 .logo {
   vertical-align: middle;
   height: 50px;
+}
+
+.container {
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+}
+
+.aside {
+  padding: 16px;
+  background: #e26a00;
+  border-radius: 4px;
+  width: 100px;
+  min-height: 300px;
 }
 </style>
