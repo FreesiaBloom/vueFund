@@ -225,6 +225,11 @@ export default {
   width: 210px;
   padding: 4px;
   font-size: 1rem;
+  background: #e0893b;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 20px;
 }
 td,
 th {
@@ -247,6 +252,7 @@ th {
 }
 .preview-content {
   border: 1px solid #999;
+  margin: 8px 0;
 }
 .preview img {
   width: 50px;

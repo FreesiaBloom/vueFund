@@ -121,6 +121,9 @@ export default {
   left: -28px;
   width: 25px;
   height: 171px;
+  background: #e0893b70;
+  border: none;
+  border-radius: 4px;
 }
 .next-selector {
   position: absolute;
@@ -129,6 +132,9 @@ export default {
   right: -28px;
   width: 25px;
   height: 171px;
+  background: #e0893b70;
+  border: none;
+  border-radius: 4px;
 }
 .left .prev-selector:after,  .right .prev-selector:after{
   content: '\25B2'

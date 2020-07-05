@@ -4,9 +4,16 @@
       <nav>
         <ul>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{name: 'Home'}">
-              <img class="logo" src="./assets/build-a-bot-logo.png" />
-              Build a bot
+            <img class="logo" src="./assets/build-a-bot-logo.png" />
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Home'}" exact>
+              Build-a-bot
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Build'}" exact>
+              Build
             </router-link>
           </li>
         </ul>
@@ -30,7 +37,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: #27064b;
+  background: #e3e3e3;
 }
 
 main {
@@ -39,12 +46,13 @@ main {
   background: #fff;
   width: 1024px;
   min-height: 300px;
+  border-radius: 4px;
 }
 
 header {
-  background-color: #fff;
   width: 1084px;
   margin: 0 auto;
+  color: #fff;
 }
 </style>
 
@@ -65,19 +73,25 @@ ul {
   display: flex;
 
   .nav-item {
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 22px;
-    border-right: 1px solid #bbb;
+    display: flex;
+    align-items: center;
+    margin: 8px 0 8px 24px;
+    font-size: 20px;
     .nav-link {
       text-decoration: none;
       color: inherit;
+      background: #e0893b;
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+    .router-link-active {
+      text-decoration: underline;
     }
   }
 }
 
 .logo {
   vertical-align: middle;
-  height: 30px;
+  height: 50px;
 }
 </style>
