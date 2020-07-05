@@ -14,6 +14,7 @@ import SidebarBuild from '../sidebars/SidebarBuild.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -34,7 +35,10 @@ export default new Router({
     {
       path: '/parts/browse',
       name: 'BrowseParts',
-      component: BrowseParts,
+      components: {
+        default: BrowseParts,
+        sidebar: SidebarStandard,
+      },
       children: [
         {
           name: 'BrowseHeads',
