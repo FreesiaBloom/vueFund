@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div v-if="availableParts" class="content">
     <div class="preview">
       <CollapsibleSection>
       <div class="preview-content">
@@ -49,34 +49,20 @@
         position="bottom"
         @partSelected="part => selectedRobot.base = part"/>
     </div>
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Robot</th>
-            <th class="cost">Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(robot, index) in cart" :key="index">
-            <td>{{robot.head.title}}</td>
-            <td class="cost">{{robot.cost}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 
 <script>
-import availableParts from '../data/parts';
+import { mapActions } from 'vuex';
 import createdHookMixin from '../data/created-hook-mixin';
 import PartSelector from './PartSelector.vue';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
 
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.getParts();
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -92,7 +78,6 @@ export default {
   components: { PartSelector, CollapsibleSection },
   data() {
     return {
-      availableParts,
       addedToCart: false,
       cart: [],
       selectedRobot: {
@@ -106,6 +91,9 @@ export default {
   },
   mixins: [createdHookMixin],
   computed: {
+    availableParts() {
+      return this.$store.state.robots.parts;
+    },
     saleBorderClass() {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
@@ -118,14 +106,16 @@ export default {
     },
   },
   methods: {
+    ...mapActions('robots', ['getParts', 'addRobotToCart']),
     addToCart() {
       const robot = this.selectedRobot;
       const cost = robot.head.cost
         + robot.leftArm.cost
-        + robot.rightArm.cost
         + robot.torso.cost
+        + robot.rightArm.cost
         + robot.base.cost;
-      this.cart.push({ ...robot, cost });
+      this.addRobotToCart({ ...robot, cost })
+        .then(() => this.$router.push('/cart'));
       this.addedToCart = true;
     },
   },
@@ -248,14 +238,6 @@ export default {
   &:hover {
         background-color: #e26a00;
       }
-}
-td,
-th {
-  text-align: left;
-  padding: 5px 20px 5px 5px;
-}
-.cost {
-  text-align: right;
 }
 .sale-border {
   border: 3px solid red;

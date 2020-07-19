@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    Root Foo: {{rootFoo}} <br />
+    Robots Foo: {{robotsFoo}} <br />
+    Users Foo: {{usersFoo}} <br />
+    <br />
+    Root Getter Foo: {{rootGetterFoo}} <br />
+    Robots Getter Foo: {{robotsGetterFoo}} <br />
     <header>
       <nav>
         <ul>
@@ -15,6 +21,14 @@
             <router-link class="nav-link" :to="{name: 'Build'}" exact>
               Build
             </router-link>
+          </li>
+          <li class="nav-item cart">
+            <router-link class="nav-link" to="/cart" exact>
+              Cart
+            </router-link>
+            <div class="cart-items">
+              {{cart.length}}
+            </div>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'BrowseParts'}" exact>
@@ -38,8 +52,24 @@
 
 <script>
 // import HomePage from './home/HomePage.vue';
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'App',
+  computed: {
+    // works for all moduels
+    ...mapState({
+      rootFoo: 'foo',
+      usersFoo: (state) => state.users.foo,
+    }),
+    // works only with namespaced modules
+    ...mapState('robots', { robotsFoo: 'foo' }),
+    ...mapGetters({ rootGetterFoo: 'foo' }),
+    ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
+    cart() {
+      return this.$store.state.robots.cart;
+    },
+  },
 };
 </script>
 
@@ -98,6 +128,23 @@ ul {
     }
     .router-link-active {
       text-decoration: underline;
+    }
+    &.cart {
+      position: relative;
+      margin-left: auto;
+      border-right: none;
+      .cart-items {
+        position: absolute;
+        top: -5px;
+        right: -9px;
+        font-size: 18px;
+        width: 20px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 100px;
+        padding: 2px;
+        background: #4a4642;
+      }
     }
   }
 }
