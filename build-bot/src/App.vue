@@ -62,16 +62,10 @@ export default {
       rootFoo: 'foo',
       usersFoo: (state) => state.users.foo,
     }),
-    // works only with namespaced moduels
-    ...mapState('robots', {
-      robotsFoo: 'foo',
-    }),
-    ...mapGetters({
-      rootGetterFoo: 'foo',
-    }),
-    ...mapGetters('robots', {
-      robotsGetterFoo: 'foo',
-    }),
+    // works only with namespaced modules
+    ...mapState('robots', { robotsFoo: 'foo' }),
+    ...mapGetters({ rootGetterFoo: 'foo' }),
+    ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
     cart() {
       return this.$store.state.robots.cart;
     },
