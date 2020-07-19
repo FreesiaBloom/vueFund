@@ -6,7 +6,6 @@
     <br />
     Root Getter Foo: {{rootGetterFoo}} <br />
     Robots Getter Foo: {{robotsGetterFoo}} <br />
-    Users Getter Foo: {{usersGetterFoo}} <br />
     <header>
       <nav>
         <ul>
@@ -53,27 +52,26 @@
 
 <script>
 // import HomePage from './home/HomePage.vue';
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'App',
   computed: {
-    rootFoo() {
-      return this.$store.state.foo;
-    },
-    robotsFoo() {
-      return this.$store.state.robots.foo;
-    },
-    usersFoo() {
-      return this.$store.state.users.foo;
-    },
-    rootGetterFoo() {
-      return this.$store.getters.foo;
-    },
-    robotsGetterFoo() {
-      return this.$store.getters['robots/foo'];
-    },
-    usersGetterFoo() {
-      return this.$store.getters['users/foo'];
-    },
+    // works for all moduels
+    ...mapState({
+      rootFoo: 'foo',
+      usersFoo: (state) => state.users.foo,
+    }),
+    // works only with namespaced moduels
+    ...mapState('robots', {
+      robotsFoo: 'foo',
+    }),
+    ...mapGetters({
+      rootGetterFoo: 'foo',
+    }),
+    ...mapGetters('robots', {
+      robotsGetterFoo: 'foo',
+    }),
     cart() {
       return this.$store.state.robots.cart;
     },
