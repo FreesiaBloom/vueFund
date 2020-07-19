@@ -42,7 +42,7 @@ export default {
   name: 'Cart',
   computed: {
     cart() {
-      return this.$store.state.cart;
+      return this.$store.state.robots.cart;
     },
     cartSaleItem() {
       return this.$store.getters.cartSaleItem;
